@@ -54,6 +54,14 @@ public class Beer {
         this.price = price;
     }
 
+    public Beer(String name, Integer strength, Integer volume, BigDecimal price) {
+        this.name = name;
+        this.strength = strength;
+        this.volume = volume;
+        this.price = price;
+        this.isVegetarian = true;
+    }
+
     public Long getBeerId() {
         return beerId;
     }
@@ -83,7 +91,7 @@ public class Beer {
         return "Beer{" +
                 "name='" + name + '\'' +
                 ", strength=" + strength +
-                ", isVegeterian=" + isVegetarian +
+                ", isVegetarian=" + isVegetarian +
                 ", volume=" + volume +
                 ", price=" + price +
                 '}';
