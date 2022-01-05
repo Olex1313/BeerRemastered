@@ -18,6 +18,18 @@ public class BeerService {
         return beerRepository.findAll();
     }
 
+    public Beer getByName(String name) {
+        return beerRepository.findByName(name);
+    }
+
+    public void deleteByName(String name) {
+        Beer toDelete = beerRepository.findByName(name);
+        if (toDelete == null) {
+            return;
+        }
+        beerRepository.delete(toDelete);
+    }
+
     public List<Beer> getUnderPrice() {
         return beerRepository.findAllByPriceBeforeOrderByPrice(BigDecimal.valueOf(100));
     }

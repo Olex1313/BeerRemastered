@@ -19,21 +19,34 @@ public class BeerController {
     }
 
     @GetMapping
-    public List<Beer> getAllBeer() {
-        return beerService.getAllBeer();
+    public List<BeerDTO> getAllBeer() {
+        return beerService.getAllBeer()
+                .stream()
+                .map(beerConverter::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(path = "/pricing")
-    public List<Beer> getAllBeerByPrice() {
-        return beerService.getUnderPrice();
+    public List<BeerDTO> getAllBeerByPrice() {
+        return beerService.getUnderPrice()
+                .stream()
+                .map(beerConverter::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping
-    public List<Beer> saveBeer(@RequestBody List<BeerDTO> payload) {
+    public List<BeerDTO> saveBeer(@RequestBody List<BeerDTO> payload) {
         List<Beer> collectedPayload = payload.stream()
-                .map((dto) -> beerConverter.convertDtoToEntity(dto))
+                .map(beerConverter::convertDtoToEntity)
                 .collect(Collectors.toList());
-        return beerService.saveBeerList(collectedPayload);
+        return beerService.saveBeerList(collectedPayload)
+                .stream()
+                .map(beerConverter::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 
+    @DeleteMapping
+    public void deleteBeer(@RequestParam(name="name") String name) {
+        beerService.deleteByName(name);
+    }
 }

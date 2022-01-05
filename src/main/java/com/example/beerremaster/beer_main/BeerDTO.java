@@ -3,10 +3,10 @@ package com.example.beerremaster.beer_main;
 import java.math.BigDecimal;
 
 public class BeerDTO {
-    private String name;
-    private Integer strength;
+    private final String name;
+    private final Integer strength;
     private Integer volume = 500;
-    private BigDecimal price;
+    private final BigDecimal price;
     private Boolean is_vegetarian = true;
 
     public BeerDTO(String name, Integer strength, Integer volume, BigDecimal price, Boolean is_vegetarian) {

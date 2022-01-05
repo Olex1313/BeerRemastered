@@ -40,4 +40,14 @@ public class BeerConverter {
                 beerDTO.getPrice()
         );
     }
+
+    public BeerDTO convertEntityToDto(Beer beer) {
+        return new BeerDTO(
+            beer.getName(),
+            beer.getStrength(),
+            beer.getVolume(),
+            beer.getPrice(),
+            beer.getVegeterian()
+        );
+    }
 }
